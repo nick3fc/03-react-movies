@@ -1,1 +1,64 @@
-// import css from "./SearchBar.module.css";
+import styles from "./SearchBar.module.css";
+import toast, { Toaster } from "react-hot-toast";
+
+interface onSubmitProps {
+  onSubmit: (searchString: string) => void;
+}
+export default function SearchBar({ onSubmit }: onSubmitProps) {
+  const handleSubmit = (formData: FormData) => {
+    const searchString = formData.get("query") as string;
+    if (searchString.trim() === "") {
+      toast("Please enter your search query.");
+    } else {
+      onSubmit(searchString);
+      console.log("sent", searchString);
+    }
+  };
+
+  return (
+    <header className={styles.header}>
+      <div className={styles.container}>
+        <a
+          className={styles.link}
+          href="https://www.themoviedb.org/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Powered by TMDB
+        </a>
+        <form className={styles.form} action={handleSubmit}>
+          <input
+            className={styles.input}
+            type="text"
+            name="query"
+            autoComplete="off"
+            placeholder="Search movies..."
+            autoFocus
+          />
+          <button className={styles.button} type="submit">
+            Search
+          </button>
+        </form>
+
+        <Toaster
+          position="top-center"
+          //   reverseOrder={false}
+          //   gutter={8}
+          containerClassName=""
+          containerStyle={{}}
+          toasterId="default"
+          toastOptions={{
+            // Define default options
+            className: "",
+            duration: 3000,
+            removeDelay: 1000,
+            style: {
+              background: "#def1a1",
+              color: "#000000",
+            },
+          }}
+        />
+      </div>
+    </header>
+  );
+}
