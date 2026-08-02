@@ -1,7 +1,7 @@
 import css from "./App.module.css";
 
-import { useState } from "react";
+// import { useState } from "react";
 
 export default function App() {
-  return <P>hello</P>;
+  return <p>hello</p>;
 }
