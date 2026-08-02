@@ -1,5 +1,4 @@
-import css from "./VoteStats.module.css";
-import type { Votes } from "../../types/votes";
+import css from "./SearchBar.module.css";
 
 interface VoteStatsProps {
   votes: Votes;

@@ -1,5 +1,4 @@
-import css from "./VoteOptions.module.css";
-import type { VoteType } from "../../types/votes";
+import css from "./MovieGrid.module.css";
 
 interface VoteOptionsProps {
   onVote: (vote: VoteType) => void;
