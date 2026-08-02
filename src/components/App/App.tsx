@@ -9,7 +9,7 @@ export default function App() {
 
   const handleSearch = (searchString: string) => {
     setQuery(searchString);
-    // return query;
+    return query;
   };
 
   
