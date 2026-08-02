@@ -12,6 +12,8 @@ export default function App() {
     return query;
   };
 
-  
+  //   const getMovies = async () => {
+  //     const response =await axios.get(, {});
+  // }
   return <SearchBar onSubmit={handleSearch} />;
 }
