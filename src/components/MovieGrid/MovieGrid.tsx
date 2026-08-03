@@ -7,7 +7,7 @@ interface MovieGridProps {
   movies: Movie[];
 }
 
-export default function MovieGrid({ onSelect, movies }: MovieGridProps) {
+export default function MovieGrid({ movies }: MovieGridProps) {
   console.log("grid received ", movies);
   //   console.log(`${import.meta.env.VITE_TMDB_IMGPATH}${movies[0].poster_path}`);
 
