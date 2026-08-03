@@ -12,6 +12,7 @@ import toast, { Toaster } from "react-hot-toast";
 export default function App() {
   const [query, setQuery] = useState("");
   const [movies, setMovies] = useState<Movie[]>([]);
+  const [loader, setLoader] = useState(false);
 
   const handleSearch = (searchString: string) => {
     setQuery(searchString);
@@ -48,7 +49,13 @@ export default function App() {
     <>
       {/* main components */}
       <SearchBar onSubmit={handleSearch} />
-      <MovieGrid onSelect={handleSelect} movies={movies} />
+      {loader ? (
+        <Loader />
+      ) : (
+        movies.length > 0 && (
+          <MovieGrid onSelect={handleSelect} movies={movies} />
+        )
+      )}
 
       {/* additional components */}
       <Toaster
