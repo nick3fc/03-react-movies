@@ -1,14 +1,5 @@
-import css from "./CafeInfo.module.css";
+import css from "./ErrorMessage.module.css";
 
-function CafeInfo() {
-  return (
-    <div className={css.container}>
-      <h1 className={css.title}>Sip Happens Café</h1>
-      <p className={css.description}>
-        Please rate our service by selecting one of the options below.
-      </p>
-    </div>
-  );
+export default function ErrorMessage() {
+  return <p className={css.text}>There was an error, please try again...</p>;
 }
-
-export default CafeInfo;
