@@ -8,10 +8,15 @@ export default function SearchBar({ onSubmit }: onSubmitProps) {
   const handleSubmit = (formData: FormData) => {
     const searchString = (formData.get("query") as string).trim();
     if (searchString === "") {
-      toast("Please enter your search query.");
+      toast("Please enter your search query.", {
+        style: {
+          background: "#def1a1",
+          color: "#000000",
+        },
+      });
     } else {
       onSubmit(searchString);
-      console.log("sent", searchString);
+      //   console.log("searchBar sent", searchString);
     }
   };
 
@@ -52,10 +57,10 @@ export default function SearchBar({ onSubmit }: onSubmitProps) {
             className: "",
             duration: 3000,
             removeDelay: 1000,
-            style: {
-              background: "#def1a1",
-              color: "#000000",
-            },
+            // style: {
+            //   background: "#def1a1",
+            //   color: "#000000",
+            // },
           }}
         />
       </div>
