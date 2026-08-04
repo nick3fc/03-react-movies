@@ -87,8 +87,8 @@ export default function App() {
           <MovieGrid onSelect={handleSelect} movies={movies} />
         )
       )}
-      {modalOpen &&
-        movie &&
+      {movie &&
+        modalOpen &&
         createPortal(
           <MovieModal onClose={handleClose} movie={movie} />,
           document.body,
