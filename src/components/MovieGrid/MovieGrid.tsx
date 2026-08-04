@@ -3,19 +3,18 @@ import css from "./MovieGrid.module.css";
 import type { Movie } from "../../types/movie";
 
 interface MovieGridProps {
-  onSelect: () => void;
+  onSelect: (movie: Movie) => void;
   movies: Movie[];
 }
 
-export default function MovieGrid({ movies }: MovieGridProps) {
-  console.log("grid received ", movies);
-  //   console.log(`${import.meta.env.VITE_TMDB_IMGPATH}${movies[0].poster_path}`);
+export default function MovieGrid({ onSelect, movies }: MovieGridProps) {
+  //   console.log("grid received ", movies);
 
   return (
     <ul className={css.grid}>
       {/* Набір елементів списку з фільмами */}
       {movies.map((movie: Movie) => (
-        <li key={movie.id}>
+        <li key={movie.id} onClick={() => onSelect(movie)}>
           <div id={`card-${movie.id}`} className={css.card}>
             <img
               className={css.image}

@@ -1,32 +1,43 @@
-// import css from "./App.module.css";
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
+
+import toast, { Toaster } from "react-hot-toast";
+
 import SearchBar from "../SearchBar/SearchBar";
 import MovieGrid from "../MovieGrid/MovieGrid";
-// import MovieModal from "../MovieModal/MovieModal";
+import MovieModal from "../MovieModal/MovieModal";
 import Loader from "../Loader/Loader";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
+
 import { getMoviesList } from "..//../services/movieService";
 
 import type { Movie } from "../../types/movie";
-
-import { useEffect, useState } from "react";
-
-import toast, { Toaster } from "react-hot-toast";
 
 export default function App() {
   const [query, setQuery] = useState("");
   const [movies, setMovies] = useState<Movie[]>([]);
   const [loader, setLoader] = useState(false);
   const [httpError, setHttpError] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [movie, setMovie] = useState<Movie | null>(null);
 
   const handleSearch = (searchString: string) => {
     setMovies([]);
     setQuery(searchString);
     setLoader(true);
     setHttpError(false);
-    console.log("app received ", searchString);
+    // console.log("app received ", searchString);
   };
-  const handleSelect = () => {};
-  // const handleClose = () => {};
+  const handleSelect = (movie: Movie) => {
+    // console.log("app received movie", movie);
+    setMovie(movie);
+    setModalOpen(true);
+  };
+  const handleClose = () => {
+    // console.log("app movieModal close");
+    setModalOpen(false);
+    setMovie(null);
+  };
 
   useEffect(() => {
     if (!query) return;
@@ -43,6 +54,7 @@ export default function App() {
               background: "#f3900e",
               color: "#000000",
             },
+            duration: 5000,
           });
         }
       } catch (error) {
@@ -75,10 +87,12 @@ export default function App() {
           <MovieGrid onSelect={handleSelect} movies={movies} />
         )
       )}
-      {/* {createPortal(
-        <MovieModal onClose={handleClose} movie={movie[0]} />,
-        document.body,
-      )} */}
+      {modalOpen &&
+        movie &&
+        createPortal(
+          <MovieModal onClose={handleClose} movie={movie} />,
+          document.body,
+        )}
       {/* additional components */}
       <Toaster
         position="top-center"
